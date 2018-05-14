@@ -45,24 +45,24 @@ CString CCommon::DataSizeToString(unsigned int size, bool short_mode, SpeedUnit 
 	case SpeedUnit::AUTO:
 		if (short_mode)
 		{
-			//if (size <= 102)			//Ğ¡ÓÚ0.1KBÊ±£¬ÏÔÊ¾0K
+			//if (size <= 102)			//å°äº0.1KBæ—¶ï¼Œæ˜¾ç¤º0K
 			//	str = _T("0K");
-			/*else */if (size < 1024 * 10)					//10KBÒÔÏÂÒÔKBÎªµ¥Î»£¬±£Áô1Î»Ğ¡Êı
+			/*else */if (size < 1024 * 10)					//10KBä»¥ä¸‹ä»¥KBä¸ºå•ä½ï¼Œä¿ç•™1ä½å°æ•°
 				str.Format(_T("%.1fK"), size / 1024.0f);
-			else if (size < 1024 * 1024)			//1MBÒÔÏÂÒÔKBÎªµ¥Î»£¬±£ÁôÕûÊı
+			else if (size < 1024 * 1024)			//1MBä»¥ä¸‹ä»¥KBä¸ºå•ä½ï¼Œä¿ç•™æ•´æ•°
 				str.Format(_T("%.0fK"), size / 1024.0f);
-			else if (size < 1024 * 1024 * 1024)		//1GBÒÔÏÂÒÔMBÎªµ¥Î»£¬±£Áô1Î»Ğ¡Êı
+			else if (size < 1024 * 1024 * 1024)		//1GBä»¥ä¸‹ä»¥MBä¸ºå•ä½ï¼Œä¿ç•™1ä½å°æ•°
 				str.Format(_T("%.1fM"), size / 1024.0f / 1024.0f);
 			else
 				str.Format(_T("%.2fG"), size / 1024.0f / 1024.0f / 1024.0f);
 		}
 		else
 		{
-			if (size < 1024 * 10)					//10KBÒÔÏÂÒÔKBÎªµ¥Î»£¬±£Áô2Î»Ğ¡Êı
+			if (size < 1024 * 10)					//10KBä»¥ä¸‹ä»¥KBä¸ºå•ä½ï¼Œä¿ç•™2ä½å°æ•°
 				str.Format(_T("%.2fKB"), size / 1024.0f);
-			else if (size < 1024 * 1024)			//1MBÒÔÏÂÒÔKBÎªµ¥Î»£¬±£Áô1Î»Ğ¡Êı
+			else if (size < 1024 * 1024)			//1MBä»¥ä¸‹ä»¥KBä¸ºå•ä½ï¼Œä¿ç•™1ä½å°æ•°
 				str.Format(_T("%.1fKB"), size / 1024.0f);
-			else if (size < 1024 * 1024 * 1024)		//1GBÒÔÏÂÒÔMBÎªµ¥Î»£¬±£Áô2Î»Ğ¡Êı
+			else if (size < 1024 * 1024 * 1024)		//1GBä»¥ä¸‹ä»¥MBä¸ºå•ä½ï¼Œä¿ç•™2ä½å°æ•°
 				str.Format(_T("%.2fMB"), size / 1024.0f / 1024.0f);
 			else
 				str.Format(_T("%.2fGB"), size / 1024.0f / 1024.0f / 1024.0f);
@@ -71,14 +71,14 @@ CString CCommon::DataSizeToString(unsigned int size, bool short_mode, SpeedUnit 
 	case SpeedUnit::KBPS:
 		if (short_mode)
 		{
-			if (size < 1024 * 10)					//10KBÒÔÏÂ±£Áô1Î»Ğ¡Êı
+			if (size < 1024 * 10)					//10KBä»¥ä¸‹ä¿ç•™1ä½å°æ•°
 			{
 				if (hide_unit)
 					str.Format(_T("%.1f"), size / 1024.0f);
 				else
 					str.Format(_T("%.1fK"), size / 1024.0f);
 			}
-			else					//10KBÒÔÉÏ±£ÁôÕûÊı
+			else					//10KBä»¥ä¸Šä¿ç•™æ•´æ•°
 			{
 				if (hide_unit)
 					str.Format(_T("%.0f"), size / 1024.0f);
@@ -88,14 +88,14 @@ CString CCommon::DataSizeToString(unsigned int size, bool short_mode, SpeedUnit 
 		}
 		else
 		{
-			if (size < 1024 * 10)					//10KBÒÔÏÂ±£Áô2Î»Ğ¡Êı
+			if (size < 1024 * 10)					//10KBä»¥ä¸‹ä¿ç•™2ä½å°æ•°
 			{
 				if (hide_unit)
 					str.Format(_T("%.2f"), size / 1024.0f);
 				else
 					str.Format(_T("%.2fKB"), size / 1024.0f);
 			}
-			else			//10KBÒÔÉÏ±£Áô1Î»Ğ¡Êı
+			else			//10KBä»¥ä¸Šä¿ç•™1ä½å°æ•°
 			{
 				if (hide_unit)
 					str.Format(_T("%.1f"), size / 1024.0f);
@@ -162,7 +162,7 @@ void CCommon::WriteLog(const char* str_text, LPCTSTR file_path)
 	char buff[32];
 	sprintf_s(buff, "%d/%.2d/%.2d %.2d:%.2d:%.2d.%.3d: ", cur_time.wYear, cur_time.wMonth, cur_time.wDay,
 		cur_time.wHour, cur_time.wMinute, cur_time.wSecond, cur_time.wMilliseconds);
-	ofstream file{ file_path, std::ios::app };	//ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÈÕÖ¾ÎÄ¼ş
+	ofstream file{ file_path, std::ios::app };	//ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ—¥å¿—æ–‡ä»¶
 	file << buff;
 	file << str_text << std::endl;
 }
@@ -174,7 +174,7 @@ void CCommon::WriteLog(const wchar_t * str_text, LPCTSTR file_path)
 	char buff[32];
 	sprintf_s(buff, "%d/%.2d/%.2d %.2d:%.2d:%.2d.%.3d: ", cur_time.wYear, cur_time.wMonth, cur_time.wDay,
 		cur_time.wHour, cur_time.wMinute, cur_time.wSecond, cur_time.wMilliseconds);
-	ofstream file{ file_path, std::ios::app };	//ÒÔ×·¼ÓµÄ·½Ê½´ò¿ªÈÕÖ¾ÎÄ¼ş
+	ofstream file{ file_path, std::ios::app };	//ä»¥è¿½åŠ çš„æ–¹å¼æ‰“å¼€æ—¥å¿—æ–‡ä»¶
 	file << buff;
 	file << UnicodeToStr(str_text).c_str() << std::endl;
 }
@@ -185,15 +185,15 @@ BOOL CCommon::CreateFileShortcut(LPCTSTR lpszLnkFileDir, LPCTSTR lpszFileName, L
 		return FALSE;
 
 	HRESULT hr;
-	IShellLink     *pLink;  //IShellLink¶ÔÏóÖ¸Õë
-	IPersistFile   *ppf; //IPersisFil¶ÔÏóÖ¸Õë
+	IShellLink     *pLink;  //IShellLinkå¯¹è±¡æŒ‡é’ˆ
+	IPersistFile   *ppf; //IPersisFilå¯¹è±¡æŒ‡é’ˆ
 
-						 //´´½¨IShellLink¶ÔÏó
+						 //åˆ›å»ºIShellLinkå¯¹è±¡
 	hr = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLink, (void**)&pLink);
 	if (FAILED(hr))
 		return FALSE;
 
-	//´ÓIShellLink¶ÔÏóÖĞ»ñÈ¡IPersistFile½Ó¿Ú
+	//ä»IShellLinkå¯¹è±¡ä¸­è·å–IPersistFileæ¥å£
 	hr = pLink->QueryInterface(IID_IPersistFile, (void**)&ppf);
 	if (FAILED(hr))
 	{
@@ -204,20 +204,20 @@ BOOL CCommon::CreateFileShortcut(LPCTSTR lpszLnkFileDir, LPCTSTR lpszFileName, L
 	TCHAR file_path[MAX_PATH];
 	GetModuleFileName(NULL, file_path, MAX_PATH);
 
-	//Ä¿±ê
+	//ç›®æ ‡
 	if (lpszFileName == NULL)
 		pLink->SetPath(file_path);
 	else
 		pLink->SetPath(lpszFileName);
 
-	//¹¤×÷Ä¿Â¼
+	//å·¥ä½œç›®å½•
 	if (lpszWorkDir != NULL)
 	{
 		pLink->SetWorkingDirectory(lpszWorkDir);
 	}
 	else
 	{
-		//ÉèÖÃ¹¤×÷Ä¿Â¼Îª¿ì½İ·½Ê½Ä¿±êËùÔÚÎ»ÖÃ
+		//è®¾ç½®å·¥ä½œç›®å½•ä¸ºå¿«æ·æ–¹å¼ç›®æ ‡æ‰€åœ¨ä½ç½®
 		TCHAR workDirBuf[MAX_PATH]{};
 		if (lpszFileName == NULL)
 			//wcscpy_s(workDirBuf, file_path);
@@ -230,25 +230,25 @@ BOOL CCommon::CreateFileShortcut(LPCTSTR lpszLnkFileDir, LPCTSTR lpszFileName, L
 		pLink->SetWorkingDirectory(workDirBuf);
 	}
 
-	//¿ì½İ¼ü
+	//å¿«æ·é”®
 	if (wHotkey != 0)
 		pLink->SetHotkey(wHotkey);
 
-	//±¸×¢
+	//å¤‡æ³¨
 	if (lpszDescription != NULL)
 		pLink->SetDescription(lpszDescription);
 
-	//ÏÔÊ¾·½Ê½
+	//æ˜¾ç¤ºæ–¹å¼
 	pLink->SetShowCmd(iShowCmd);
 
 
-	//¿ì½İ·½Ê½µÄÂ·¾¶ + Ãû³Æ
+	//å¿«æ·æ–¹å¼çš„è·¯å¾„ + åç§°
 	wchar_t szBuffer[MAX_PATH];
-	if (lpszLnkFileName != NULL) //Ö¸¶¨ÁË¿ì½İ·½Ê½µÄÃû³Æ
+	if (lpszLnkFileName != NULL) //æŒ‡å®šäº†å¿«æ·æ–¹å¼çš„åç§°
 		swprintf_s(szBuffer, L"%s\\%s", lpszLnkFileDir, lpszLnkFileName);
 	else
 	{
-		//Ã»ÓĞÖ¸¶¨Ãû³Æ£¬¾Í´ÓÈ¡Ö¸¶¨ÎÄ¼şµÄÎÄ¼şÃû×÷Îª¿ì½İ·½Ê½Ãû³Æ¡£
+		//æ²¡æœ‰æŒ‡å®šåç§°ï¼Œå°±ä»å–æŒ‡å®šæ–‡ä»¶çš„æ–‡ä»¶åä½œä¸ºå¿«æ·æ–¹å¼åç§°ã€‚
 		const wchar_t *pstr;
 		if (lpszFileName != NULL)
 			pstr = wcsrchr(lpszFileName, L'\\');
@@ -261,15 +261,15 @@ BOOL CCommon::CreateFileShortcut(LPCTSTR lpszLnkFileDir, LPCTSTR lpszFileName, L
 			pLink->Release();
 			return FALSE;
 		}
-		//×¢Òâºó×ºÃûÒª´Ó.exe¸ÄÎª.lnk
+		//æ³¨æ„åç¼€åè¦ä».exeæ”¹ä¸º.lnk
 		swprintf_s(szBuffer, L"%s\\%s", lpszLnkFileDir, pstr);
 		int nLen = wcslen(szBuffer);
 		szBuffer[nLen - 3] = L'l';
 		szBuffer[nLen - 2] = L'n';
 		szBuffer[nLen - 1] = L'k';
 	}
-	//±£´æ¿ì½İ·½Ê½µ½Ö¸¶¨Ä¿Â¼ÏÂ
-	//WCHAR  wsz[MAX_PATH];  //¶¨ÒåUnicode×Ö·û´®
+	//ä¿å­˜å¿«æ·æ–¹å¼åˆ°æŒ‡å®šç›®å½•ä¸‹
+	//WCHAR  wsz[MAX_PATH];  //å®šä¹‰Unicodeå­—ç¬¦ä¸²
 	//MultiByteToWideChar(CP_ACP, 0, szBuffer, -1, wsz, MAX_PATH);
 
 	hr = ppf->Save(szBuffer, TRUE);
@@ -293,9 +293,9 @@ wstring CCommon::GetStartUpPath()
 
 void CCommon::GetFiles(const wchar_t* path, vector<wstring>& files)
 {
-	//ÎÄ¼ş¾ä±ú 
+	//æ–‡ä»¶å¥æŸ„ 
 	intptr_t hFile = 0;
-	//ÎÄ¼şĞÅÏ¢£¨ÓÃUnicode±£´æÊ¹ÓÃ_wfinddata_t£¬¶à×Ö½Ú×Ö·û¼¯Ê¹ÓÃ_finddata_t£©
+	//æ–‡ä»¶ä¿¡æ¯ï¼ˆç”¨Unicodeä¿å­˜ä½¿ç”¨_wfinddata_tï¼Œå¤šå­—èŠ‚å­—ç¬¦é›†ä½¿ç”¨_finddata_tï¼‰
 	_wfinddata_t fileinfo;
 	wstring file_name;
 	if ((hFile = _wfindfirst(wstring(path).append(L"\\*").c_str(), &fileinfo)) != -1)
@@ -304,8 +304,8 @@ void CCommon::GetFiles(const wchar_t* path, vector<wstring>& files)
 		{
 			file_name.assign(fileinfo.name);
 			if (file_name != L"." && file_name != L"..")
-				//files.push_back(wstring(path) + L"\\" + file_name);  //½«ÎÄ¼şÃû±£´æ(ºöÂÔ"."ºÍ"..")
-				files.push_back(L"\\" + file_name);  //½«ÎÄ¼şÃû±£´æ(ºöÂÔ"."ºÍ"..")
+				//files.push_back(wstring(path) + L"\\" + file_name);  //å°†æ–‡ä»¶åä¿å­˜(å¿½ç•¥"."å’Œ"..")
+				files.push_back(L"\\" + file_name);  //å°†æ–‡ä»¶åä¿å­˜(å¿½ç•¥"."å’Œ"..")
 		} while (_wfindnext(hFile, &fileinfo) == 0);
 	}
 	_findclose(hFile);
@@ -321,7 +321,7 @@ bool CCommon::MoveAFile(LPCTSTR exist_file, LPCTSTR new_file)
 {
 	if(!FileExist(exist_file))
 		return false;
-	//if (FileExist(new_file))		//Èç¹ûÄ¿±êÎÄ¼şÒÑ¾­´æÔÚ£¬ÔòÏÈÉ¾³ıËü
+	//if (FileExist(new_file))		//å¦‚æœç›®æ ‡æ–‡ä»¶å·²ç»å­˜åœ¨ï¼Œåˆ™å…ˆåˆ é™¤å®ƒ
 	//	DeleteFile(new_file);
 	return (MoveFile(exist_file, new_file) != 0);
 }
@@ -377,9 +377,9 @@ wstring CCommon::GetTemplatePath()
 {
 	wstring result;
 	wchar_t buff[MAX_PATH];
-	GetTempPath(MAX_PATH, buff);		//»ñÈ¡ÁÙÊ±ÎÄ¼ş¼ĞµÄÂ·¾¶
+	GetTempPath(MAX_PATH, buff);		//è·å–ä¸´æ—¶æ–‡ä»¶å¤¹çš„è·¯å¾„
 	result = buff;
-	if (result.back() != L'\\' && result.back() != L'/')		//È·±£Â·¾¶ºóÃæÓĞĞ±¸Ü
+	if (result.back() != L'\\' && result.back() != L'/')		//ç¡®ä¿è·¯å¾„åé¢æœ‰æ–œæ 
 		result.push_back(L'\\');
 	return result;
 }
@@ -393,10 +393,10 @@ wstring CCommon::GetAppDataConfigPath()
 		SHGetPathFromIDList(ppidl, pszAppDataPath);
 		CoTaskMemFree(ppidl);
 	}
-	wstring app_data_path{ pszAppDataPath };		//»ñÈ¡µ½C:/User/ÓÃ»§Ãû/AppData/RoamingÂ·¾¶
-	CreateDirectory(app_data_path.c_str(), NULL);		//Èç¹ûRoaming²»´æÔÚ£¬Ôò´´½¨Ëü
+	wstring app_data_path{ pszAppDataPath };		//è·å–åˆ°C:/User/ç”¨æˆ·å/AppData/Roamingè·¯å¾„
+	CreateDirectory(app_data_path.c_str(), NULL);		//å¦‚æœRoamingä¸å­˜åœ¨ï¼Œåˆ™åˆ›å»ºå®ƒ
 	app_data_path += L"\\TrafficMonitor\\";
-	CreateDirectory(app_data_path.c_str(), NULL);		//Èç¹ûC:/User/ÓÃ»§Ãû/AppData/Roaming/TrafficMonitor²»´æÔÚ£¬Ôò´´½¨Ëü
+	CreateDirectory(app_data_path.c_str(), NULL);		//å¦‚æœC:/User/ç”¨æˆ·å/AppData/Roaming/TrafficMonitorä¸å­˜åœ¨ï¼Œåˆ™åˆ›å»ºå®ƒ
 
 	return app_data_path;
 }
@@ -405,7 +405,7 @@ void CCommon::DrawWindowText(CDC * pDC, CRect rect, LPCTSTR lpszString, COLORREF
 {
 	pDC->SetTextColor(color);
 	//m_pDC->SetBkMode(TRANSPARENT);
-	//ÓÃ±³¾°É«Ìî³ä¾ØĞÎÇøÓò
+	//ç”¨èƒŒæ™¯è‰²å¡«å……çŸ©å½¢åŒºåŸŸ
 	pDC->FillSolidRect(rect, back_color);
 	pDC->DrawText(lpszString, rect, DT_VCENTER | DT_SINGLELINE | DT_NOPREFIX);
 
@@ -421,26 +421,26 @@ void CCommon::SetDrawArea(CDC * pDC, CRect rect)
 
 bool CCommon::IsForegroundFullscreen()
 {
-	bool bFullscreen{ false };		//ÓÃÓÚÖ¸Ê¾Ç°Ì¨´°¿ÚÊÇ·ñÊÇÈ«ÆÁ
+	bool bFullscreen{ false };		//ç”¨äºæŒ‡ç¤ºå‰å°çª—å£æ˜¯å¦æ˜¯å…¨å±
 	HWND hWnd;
 	RECT rcApp;
 	RECT rcDesk;
-	hWnd = GetForegroundWindow();	//»ñÈ¡µ±Ç°ÕıÔÚÓëÓÃ»§½»»¥µÄÇ°Ì¨´°¿Ú¾ä±ú
+	hWnd = GetForegroundWindow();	//è·å–å½“å‰æ­£åœ¨ä¸ç”¨æˆ·äº¤äº’çš„å‰å°çª—å£å¥æŸ„
 	TCHAR buff[256];
-	GetClassName(hWnd, buff, 256);		//»ñÈ¡Ç°Ì¨´°¿ÚµÄÀàÃû
+	GetClassName(hWnd, buff, 256);		//è·å–å‰å°çª—å£çš„ç±»å
 	CString class_name{ buff };
-	if (hWnd != GetDesktopWindow() && class_name!=_T("WorkerW") && hWnd != GetShellWindow())//Èç¹ûÇ°Ì¨´°¿Ú²»ÊÇ×ÀÃæ´°¿Ú£¬Ò²²»ÊÇ¿ØÖÆÌ¨´°¿Ú
+	if (hWnd != GetDesktopWindow() && class_name!=_T("WorkerW") && hWnd != GetShellWindow())//å¦‚æœå‰å°çª—å£ä¸æ˜¯æ¡Œé¢çª—å£ï¼Œä¹Ÿä¸æ˜¯æ§åˆ¶å°çª—å£
 	{
-		GetWindowRect(hWnd, &rcApp);	//»ñÈ¡Ç°Ì¨´°¿ÚµÄ×ø±ê
-		GetWindowRect(GetDesktopWindow(), &rcDesk);	//¸ù¾İ×ÀÃæ´°¿Ú¾ä±ú£¬»ñÈ¡Õû¸öÆÁÄ»µÄ×ø±ê
-		if (rcApp.left <= rcDesk.left && //Èç¹ûÇ°Ì¨´°¿ÚµÄ×ø±êÍêÈ«¸²¸Ç×¡×ÀÃæ´°¿Ú£¬¾Í±íÊ¾Ç°Ì¨´°¿ÚÊÇÈ«ÆÁµÄ
+		GetWindowRect(hWnd, &rcApp);	//è·å–å‰å°çª—å£çš„åæ ‡
+		GetWindowRect(GetDesktopWindow(), &rcDesk);	//æ ¹æ®æ¡Œé¢çª—å£å¥æŸ„ï¼Œè·å–æ•´ä¸ªå±å¹•çš„åæ ‡
+		if (rcApp.left <= rcDesk.left && //å¦‚æœå‰å°çª—å£çš„åæ ‡å®Œå…¨è¦†ç›–ä½æ¡Œé¢çª—å£ï¼Œå°±è¡¨ç¤ºå‰å°çª—å£æ˜¯å…¨å±çš„
 			rcApp.top <= rcDesk.top &&
 			rcApp.right >= rcDesk.right &&
 			rcApp.bottom >= rcDesk.bottom)
 		{
 			bFullscreen = true;
 		}
-	}//Èç¹ûÇ°Ì¨´°¿ÚÊÇ×ÀÃæ´°¿Ú£¬»òÕßÊÇ¿ØÖÆÌ¨´°¿Ú£¬¾ÍÖ±½Ó·µ»Ø²»ÊÇÈ«ÆÁ
+	}//å¦‚æœå‰å°çª—å£æ˜¯æ¡Œé¢çª—å£ï¼Œæˆ–è€…æ˜¯æ§åˆ¶å°çª—å£ï¼Œå°±ç›´æ¥è¿”å›ä¸æ˜¯å…¨å±
 	return bFullscreen;
 }
 
@@ -479,13 +479,13 @@ bool CCommon::CopyStringToClipboard(const wstring & str)
 //	CString tip_info;
 //	if (show_cpu_memory)
 //	{
-//		tip_info.Format(_T("½ñÈÕÒÑÊ¹ÓÃÁ÷Á¿£º%s\r\nÄÚ´æÊ¹ÓÃ£º%s/%s"),
+//		tip_info.Format(_T("ä»Šæ—¥å·²ä½¿ç”¨æµé‡ï¼š%s\r\nå†…å­˜ä½¿ç”¨ï¼š%s/%s"),
 //			CCommon::KBytesToString(static_cast<unsigned int>(today_traffic / 1024)),
 //			CCommon::KBytesToString(used_memory), CCommon::KBytesToString(total_memory));
 //	}
 //	else
 //	{
-//		tip_info.Format(_T("½ñÈÕÒÑÊ¹ÓÃÁ÷Á¿£º%s\r\nCPUÊ¹ÓÃ£º%d%%\r\nÄÚ´æÊ¹ÓÃ£º%s/%s (%d%%)"),
+//		tip_info.Format(_T("ä»Šæ—¥å·²ä½¿ç”¨æµé‡ï¼š%s\r\nCPUä½¿ç”¨ï¼š%d%%\r\nå†…å­˜ä½¿ç”¨ï¼š%s/%s (%d%%)"),
 //			CCommon::KBytesToString(static_cast<unsigned int>(today_traffic / 1024)),
 //			cpu_usage,
 //			CCommon::KBytesToString(used_memory), CCommon::KBytesToString(total_memory),
@@ -531,7 +531,7 @@ bool CCommon::IsWindows10FallCreatorOrLater()
 
 bool CCommon::GetURL(const wstring & url, wstring & result)
 {
-	bool sucessed{ false };
+	bool successed{ false };
 	CInternetSession session{};
 	CHttpFile* pfile{};
 	try
@@ -548,7 +548,7 @@ bool CCommon::GetURL(const wstring & url, wstring & result)
 				content += data;
 			}
 			result = StrToUnicode((const char*)content.GetString());
-			sucessed = true;
+			successed = true;
 		}
 		pfile->Close();
 		delete pfile;
@@ -562,10 +562,10 @@ bool CCommon::GetURL(const wstring & url, wstring & result)
 			delete pfile;
 		}
 		session.Close();
-		sucessed = false;
-		e->Delete();		//Ã»ÓĞÕâ¾ä»áÔì³ÉÄÚ´æĞ¹Â¶
+		successed = false;
+		e->Delete();		//æ²¡æœ‰è¿™å¥ä¼šé€ æˆå†…å­˜æ³„éœ²
 	}
-	return sucessed;
+	return successed;
 }
 
 wstring CCommon::GetInternetIp()
@@ -579,14 +579,14 @@ wstring CCommon::GetInternetIp()
 		file << UnicodeToStr(web_page.c_str()) << std::endl;
 #endif // _DEBUG
 		size_t index, index1, index2;
-		index = web_page.find(L"\"ip\"");		//²éÕÒ×Ö·û´®¡°"ip"¡±
-		index1 = web_page.find(L'\"', index + 5);	//²éÕÒIPµØÖ·Ç°ÃæµÄÒıºÅ
-		index2 = web_page.find(L'\"', index + 12);	//²éÕÒIPµØÖ·ºóÃæµÄÒıºÅ
+		index = web_page.find(L"\"ip\"");		//æŸ¥æ‰¾å­—ç¬¦ä¸²â€œ"ip"â€
+		index1 = web_page.find(L'\"', index + 5);	//æŸ¥æ‰¾IPåœ°å€å‰é¢çš„å¼•å·
+		index2 = web_page.find(L'\"', index + 12);	//æŸ¥æ‰¾IPåœ°å€åé¢çš„å¼•å·
 		if (index == wstring::npos || index1 == wstring::npos || index2 == wstring::npos)
 			ip_address.clear();
 		else
-			ip_address = web_page.substr(index1 + 1, index2 - index1 - 1);	//»ñÈ¡IPµØÖ·
-		if (ip_address.size() > 15 || ip_address.size() < 7)		//IPµØÖ·×î³¤15¸ö×Ö·û£¬×î¶Ì7¸ö×Ö·û
+			ip_address = web_page.substr(index1 + 1, index2 - index1 - 1);	//è·å–IPåœ°å€
+		if (ip_address.size() > 15 || ip_address.size() < 7)		//IPåœ°å€æœ€é•¿15ä¸ªå­—ç¬¦ï¼Œæœ€çŸ­7ä¸ªå­—ç¬¦
 			ip_address.clear();
 
 		return ip_address;
@@ -689,7 +689,7 @@ void CCommon::WStringCopy(wchar_t * str_dest, int dest_size, const wchar_t * str
 	int i;
 	for (i = 0; i < dest_size && i < source_size && str_source[i] != L'\0'; i++)
 		str_dest[i] = str_source[i];
-	//È·±£Ä¿±ê×Ö·û´®Ä©Î²ÓĞÒ»¸ö\0
+	//ç¡®ä¿ç›®æ ‡å­—ç¬¦ä¸²æœ«å°¾æœ‰ä¸€ä¸ª\0
 	int copy_cnt = i;
 	if (copy_cnt < dest_size)
 		str_dest[copy_cnt] = L'\0';
